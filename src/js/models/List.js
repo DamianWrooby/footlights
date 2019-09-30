@@ -2,8 +2,7 @@ import axios from 'axios';
 import { proxy } from '../config';
 
 export default class List {
-	constructor(id) {
-		this.id = id;
+	constructor() {
 	}
 	async getList() {
 		try {

@@ -2666,10 +2666,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var List =
 /*#__PURE__*/
 function () {
-  function List(id) {
+  function List() {
     _classCallCheck(this, List);
-
-    this.id = id;
   }
 
   _createClass(List, [{
@@ -2741,8 +2739,8 @@ var renderGame = function renderGame(game) {
   </a>
   </li>
   `*/
-  "<li>\n            <a class=\"\">\n                <p>".concat(game.title, "</p>\n            </a>\n        </li>\n        ");
-  document.getElementById('app').insertAdjacentHTML('beforeend', markup);
+  "<li>\n            <a class=\"games-list__item\">\n                <p>".concat(game.title, "</p>\n                <figure class=\"game-list__thumbnail\">\n                <img src=\"").concat(game.thumbnail, "\" alt=\"").concat(game.title, "\">\n                </figure>\n            </a>\n        </li>\n        ");
+  document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);
 };
 
 var renderGamesList = function renderGamesList(games) {
@@ -2800,7 +2798,7 @@ function () {
           case 8:
             _context.prev = 8;
             _context.t0 = _context["catch"](1);
-            alert('Something went wrong.');
+            console.log('Something went wrong.');
 
           case 11:
           case "end":
@@ -2844,7 +2842,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56390" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62851" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

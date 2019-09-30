@@ -14,10 +14,9 @@ const controlList = async () => {
 	try {
 		await state.list.getList();
 		console.log(state.list.result);
-
 		listView.renderGamesList(state.list.result);
 	} catch (err) {
-		alert('Something went wrong.');
+		console.log('Something went wrong.');
 	}
 };
 controlList();

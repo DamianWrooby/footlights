@@ -14,12 +14,15 @@ const renderGame = game => {
         </li>
     `*/
         `<li>
-            <a class="">
+            <a class="games-list__item">
                 <p>${game.title}</p>
+                <figure class="game-list__thumbnail">
+                <img src="${game.thumbnail}" alt="${game.title}">
+                </figure>
             </a>
         </li>
         `;
-    document.getElementById('app').insertAdjacentHTML('beforeend', markup);
+    document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);
 };
 
 export const renderGamesList = (games) => {
