@@ -1,6 +1,7 @@
 import "regenerator-runtime/runtime";
 import '../styles.scss';
 import List from './models/List';
+import * as listView from './views/listView';
 
 const state = {};
 
@@ -14,7 +15,7 @@ const controlList = async () => {
 		await state.list.getList();
 		console.log(state.list.result);
 
-		// listView.renderResults(state.search.result);
+		listView.renderGamesList(state.list.result);
 	} catch (err) {
 		alert('Something went wrong.');
 	}
