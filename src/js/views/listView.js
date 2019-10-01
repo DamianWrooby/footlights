@@ -1,5 +1,7 @@
 
+import uniqid from 'uniqid';
 const renderGame = game => {
+    
     const markup = /*`
         <li>
             <a class="results__link" href="#${recipe.recipe_id}">
@@ -14,9 +16,11 @@ const renderGame = game => {
         </li>
     `*/
         `<li>
-            <a class="games-list__item" href="#${game.competition.id}">
-            <p>${game.title}</p>
+            <a class="games-list__item" href="#${uniqid()}">
+                <div class="games-list__title">${game.title}</div>
+                <div class="games-list__league">${game.competition.name}</div>
             </a>
+            <div class="games-list__video">${game.embed}</div>
         </li>
         `;
     document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);
@@ -25,3 +29,4 @@ const renderGame = game => {
 export const renderGamesList = (games) => {
     games.forEach(renderGame);
 };
+

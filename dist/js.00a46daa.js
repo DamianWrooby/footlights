@@ -2716,13 +2716,113 @@ function () {
 }();
 
 exports.default = List;
-},{"axios":"../node_modules/axios/index.js","../config":"js/config.js"}],"js/views/listView.js":[function(require,module,exports) {
+},{"axios":"../node_modules/axios/index.js","../config":"js/config.js"}],"../node_modules/os-browserify/browser.js":[function(require,module,exports) {
+exports.endianness = function () { return 'LE' };
+
+exports.hostname = function () {
+    if (typeof location !== 'undefined') {
+        return location.hostname
+    }
+    else return '';
+};
+
+exports.loadavg = function () { return [] };
+
+exports.uptime = function () { return 0 };
+
+exports.freemem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.totalmem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.cpus = function () { return [] };
+
+exports.type = function () { return 'Browser' };
+
+exports.release = function () {
+    if (typeof navigator !== 'undefined') {
+        return navigator.appVersion;
+    }
+    return '';
+};
+
+exports.networkInterfaces
+= exports.getNetworkInterfaces
+= function () { return {} };
+
+exports.arch = function () { return 'javascript' };
+
+exports.platform = function () { return 'browser' };
+
+exports.tmpdir = exports.tmpDir = function () {
+    return '/tmp';
+};
+
+exports.EOL = '\n';
+
+exports.homedir = function () {
+	return '/'
+};
+
+},{}],"../node_modules/uniqid/index.js":[function(require,module,exports) {
+var process = require("process");
+/* 
+(The MIT License)
+Copyright (c) 2014 Halász Ádám <mail@adamhalasz.com>
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+//  Unique Hexatridecimal ID Generator
+// ================================================
+
+//  Dependencies
+// ================================================
+var pid = process && process.pid ? process.pid.toString(36) : '' ;
+var address = '';
+if(typeof __webpack_require__ !== 'function'){
+    var mac = '', networkInterfaces = require('os').networkInterfaces();
+    for(interface_key in networkInterfaces){
+        const networkInterface = networkInterfaces[interface_key];
+        const length = networkInterface.length;
+        for(var i = 0; i < length; i++){
+            if(networkInterface[i].mac && networkInterface[i].mac != '00:00:00:00:00:00'){
+                mac = networkInterface[i].mac; break;
+            }
+        }
+    }
+    address = mac ? parseInt(mac.replace(/\:|\D+/gi, '')).toString(36) : '' ;
+} 
+
+//  Exports
+// ================================================
+module.exports = module.exports.default = function(prefix){ return (prefix || '') + address + pid + now().toString(36); }
+module.exports.process = function(prefix){ return (prefix || '') + pid + now().toString(36); }
+module.exports.time    = function(prefix){ return (prefix || '') + now().toString(36); }
+
+//  Helpers
+// ================================================
+function now(){
+    var time = Date.now();
+    var last = now.last || time;
+    return now.last = time > last ? time : last + 1;
+}
+
+},{"os":"../node_modules/os-browserify/browser.js","process":"../node_modules/process/browser.js"}],"js/views/listView.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.renderGamesList = void 0;
+
+var _uniqid = _interopRequireDefault(require("uniqid"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var renderGame = function renderGame(game) {
   var markup =
@@ -2739,7 +2839,7 @@ var renderGame = function renderGame(game) {
   </a>
   </li>
   `*/
-  "<li>\n            <a class=\"games-list__item\">\n                <p>".concat(game.title, "</p>\n                <figure class=\"game-list__thumbnail\">\n                <img src=\"").concat(game.thumbnail, "\" alt=\"").concat(game.title, "\">\n                </figure>\n            </a>\n        </li>\n        ");
+  "<li>\n            <a class=\"games-list__item\" href=\"#".concat((0, _uniqid.default)(), "\">\n                <div class=\"games-list__title\">").concat(game.title, "</div>\n                <div class=\"games-list__league\">").concat(game.competition.name, "</div>\n            </a>\n            <div class=\"games-list__video\">").concat(game.embed, "</div>\n        </li>\n        ");
   document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);
 };
 
@@ -2748,6 +2848,41 @@ var renderGamesList = function renderGamesList(games) {
 };
 
 exports.renderGamesList = renderGamesList;
+},{"uniqid":"../node_modules/uniqid/index.js"}],"js/views/gameView.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderFullGame = exports.highlightSelected = void 0;
+
+var highlightSelected = function highlightSelected(id) {
+  var resultsArr = Array.from(document.querySelectorAll('.games-list__item'));
+  resultsArr.forEach(function (el) {
+    el.classList.remove('games-list__item--active');
+  });
+  document.querySelector(".games-list__item[href*=\"".concat(id, "\"]")).classList.add('games-list__item--active');
+};
+
+exports.highlightSelected = highlightSelected;
+
+var renderFullGame = function renderFullGame(id) {
+  console.log(document.querySelector(".games-list__item[href*=\"".concat(id, "\"] ~.games-list__video")));
+  document.querySelector(".games-list__item[href*=\"".concat(id, "\"] ~ .games-list__video")).classList.add('games-list__video--active');
+};
+
+exports.renderFullGame = renderFullGame;
+},{}],"js/views/base.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.elements = void 0;
+var elements = {
+  gamesList: document.querySelector('.games-list')
+};
+exports.elements = elements;
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -2758,6 +2893,10 @@ require("../styles.scss");
 var _List = _interopRequireDefault(require("./models/List"));
 
 var listView = _interopRequireWildcard(require("./views/listView"));
+
+var gameView = _interopRequireWildcard(require("./views/gameView"));
+
+var _base = require("./views/base");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -2814,7 +2953,31 @@ function () {
 }();
 
 controlList();
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../styles.scss":"styles.scss","./models/List":"js/models/List.js","./views/listView":"js/views/listView.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+/**
+ * GAME CONTROLLER
+ */
+
+/* elements.gamesList.addEventListener('click', (e) => {
+	const item = e.target.closest('.games-list__item');
+	if (item) {
+		console.log('item was clicked');
+	}
+});
+*/
+
+var controlGame = function controlGame() {
+  var id = window.location.hash.replace('#', '');
+
+  if (id) {
+    // Highlight selected item
+    if (state.list) gameView.highlightSelected(id); // Open game view
+
+    gameView.renderFullGame(id);
+  }
+};
+
+window.addEventListener('hashchange', controlGame);
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../styles.scss":"styles.scss","./models/List":"js/models/List.js","./views/listView":"js/views/listView.js","./views/gameView":"js/views/gameView.js","./views/base":"js/views/base.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2842,7 +3005,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62851" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49990" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
