@@ -2825,25 +2825,14 @@ var _uniqid = _interopRequireDefault(require("uniqid"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var renderGame = function renderGame(game) {
-  var markup =
-  /*`
-  <li>
-  <a class="results__link" href="#${recipe.recipe_id}">
-  <figure class="results__fig">
-   <img src="${recipe.image_url}" alt="${recipe.title}">
-  </figure>
-  <div class="results__data">
-   <h4 class="results__name">${limitRecipeTitle(recipe.title)}</h4>
-   <p class="results__author">${recipe.publisher}</p>
-  </div>
-  </a>
-  </li>
-  `*/
-  "<li>\n            <a class=\"games-list__item\" href=\"#".concat((0, _uniqid.default)(), "\">\n                <div class=\"games-list__title\">").concat(game.title, "</div>\n                <div class=\"games-list__league\">").concat(game.competition.name, "</div>\n            </a>\n            <div class=\"games-list__video\">\n                ").concat(game.embed, "\n            </div>\n        </li>\n        ");
+  var markup = "\n        <li>\n            <a class=\"games-list__item\" href=\"#".concat(game.id, "\">\n                <div class=\"games-list__title\">").concat(game.title, "</div>\n                <div class=\"games-list__league\">").concat(game.competition.name, "</div>\n            </a>\n        </li>\n        ");
   document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);
 };
 
 var renderGamesList = function renderGamesList(games) {
+  games.forEach(function (el) {
+    el.id = (0, _uniqid.default)();
+  });
   games.forEach(renderGame);
 };
 
@@ -2863,15 +2852,19 @@ var highlightSelected = function highlightSelected(id) {
   });
   document.querySelector(".games-list__item[href*=\"".concat(id, "\"]")).classList.add('games-list__item--active');
 };
+/*export const renderFullGame = id => {
+    const resultsArr = Array.from(document.querySelectorAll('.games-list__video'));
+    resultsArr.forEach(el => {
+        el.classList.remove('games-list__video--active');
+    });
+*/
+
 
 exports.highlightSelected = highlightSelected;
 
 var renderFullGame = function renderFullGame(id) {
-  var resultsArr = Array.from(document.querySelectorAll('.games-list__video'));
-  resultsArr.forEach(function (el) {
-    el.classList.remove('games-list__video--active');
-  });
-  document.querySelector(".games-list__item[href*=\"".concat(id, "\"] ~ .games-list__video")).classList.add('games-list__video--active');
+  var markup = "\n            <div class=\"games-list__video\">\n                ".concat(game.embed, "\n            </div>\n            ");
+  document.querySelector(".games-list__item[href*=\"".concat(id, "\"]")).insertAdjacentElement('beforeend', markup);
 };
 
 exports.renderFullGame = renderFullGame;
@@ -2900,6 +2893,8 @@ var listView = _interopRequireWildcard(require("./views/listView"));
 var gameView = _interopRequireWildcard(require("./views/gameView"));
 
 var _base = require("./views/base");
+
+var _uniqid = _interopRequireDefault(require("uniqid"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -2980,7 +2975,7 @@ var controlGame = function controlGame() {
 };
 
 window.addEventListener('hashchange', controlGame);
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../styles.scss":"styles.scss","./models/List":"js/models/List.js","./views/listView":"js/views/listView.js","./views/gameView":"js/views/gameView.js","./views/base":"js/views/base.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../styles.scss":"styles.scss","./models/List":"js/models/List.js","./views/listView":"js/views/listView.js","./views/gameView":"js/views/gameView.js","./views/base":"js/views/base.js","uniqid":"../node_modules/uniqid/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -3008,7 +3003,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50204" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49463" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

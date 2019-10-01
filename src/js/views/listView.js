@@ -1,34 +1,20 @@
-
 import uniqid from 'uniqid';
-const renderGame = game => {
-    
-    const markup = /*`
+
+const renderGame = (game) => {
+	const markup = `
         <li>
-            <a class="results__link" href="#${recipe.recipe_id}">
-                <figure class="results__fig">
-                    <img src="${recipe.image_url}" alt="${recipe.title}">
-                </figure>
-                <div class="results__data">
-                    <h4 class="results__name">${limitRecipeTitle(recipe.title)}</h4>
-                    <p class="results__author">${recipe.publisher}</p>
-                </div>
-            </a>
-        </li>
-    `*/
-        `<li>
-            <a class="games-list__item" href="#${uniqid()}">
+            <a class="games-list__item" href="#${game.id}">
                 <div class="games-list__title">${game.title}</div>
                 <div class="games-list__league">${game.competition.name}</div>
             </a>
-            <div class="games-list__video">
-                ${game.embed}
-            </div>
         </li>
         `;
-    document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);
+	document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);
 };
 
 export const renderGamesList = (games) => {
-    games.forEach(renderGame);
+	games.forEach((el) => {
+		el.id = uniqid();
+	});
+	games.forEach(renderGame);
 };
-

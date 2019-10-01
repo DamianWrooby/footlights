@@ -1,4 +1,4 @@
-import "regenerator-runtime/runtime";
+import 'regenerator-runtime/runtime';
 import '../styles.scss';
 import List from './models/List';
 import * as listView from './views/listView';
@@ -42,7 +42,5 @@ const controlGame = () => {
 		// Open game view
 		gameView.renderFullGame(id);
 	}
-
-
 };
 window.addEventListener('hashchange', controlGame);
