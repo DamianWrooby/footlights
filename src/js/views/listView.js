@@ -20,7 +20,9 @@ const renderGame = game => {
                 <div class="games-list__title">${game.title}</div>
                 <div class="games-list__league">${game.competition.name}</div>
             </a>
-            <div class="games-list__video">${game.embed}</div>
+            <div class="games-list__video">
+                ${game.embed}
+            </div>
         </li>
         `;
     document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);

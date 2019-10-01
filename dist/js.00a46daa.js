@@ -2839,7 +2839,7 @@ var renderGame = function renderGame(game) {
   </a>
   </li>
   `*/
-  "<li>\n            <a class=\"games-list__item\" href=\"#".concat((0, _uniqid.default)(), "\">\n                <div class=\"games-list__title\">").concat(game.title, "</div>\n                <div class=\"games-list__league\">").concat(game.competition.name, "</div>\n            </a>\n            <div class=\"games-list__video\">").concat(game.embed, "</div>\n        </li>\n        ");
+  "<li>\n            <a class=\"games-list__item\" href=\"#".concat((0, _uniqid.default)(), "\">\n                <div class=\"games-list__title\">").concat(game.title, "</div>\n                <div class=\"games-list__league\">").concat(game.competition.name, "</div>\n            </a>\n            <div class=\"games-list__video\">\n                ").concat(game.embed, "\n            </div>\n        </li>\n        ");
   document.querySelector('.games-list').insertAdjacentHTML('beforeend', markup);
 };
 
@@ -2867,7 +2867,10 @@ var highlightSelected = function highlightSelected(id) {
 exports.highlightSelected = highlightSelected;
 
 var renderFullGame = function renderFullGame(id) {
-  console.log(document.querySelector(".games-list__item[href*=\"".concat(id, "\"] ~.games-list__video")));
+  var resultsArr = Array.from(document.querySelectorAll('.games-list__video'));
+  resultsArr.forEach(function (el) {
+    el.classList.remove('games-list__video--active');
+  });
   document.querySelector(".games-list__item[href*=\"".concat(id, "\"] ~ .games-list__video")).classList.add('games-list__video--active');
 };
 
@@ -3005,7 +3008,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49990" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50204" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -18,10 +18,10 @@ a:focus {
 ul {
   list-style-type: none; 
 }
-
-
+.games-list {
+  padding: 2em;
+}
 .games-list__item {
-  padding: 1em;
   display: inline-block;
 }
 .games-list__league {
