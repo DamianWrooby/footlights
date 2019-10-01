@@ -14,11 +14,8 @@ const renderGame = game => {
         </li>
     `*/
         `<li>
-            <a class="games-list__item">
-                <p>${game.title}</p>
-                <figure class="game-list__thumbnail">
-                <img src="${game.thumbnail}" alt="${game.title}">
-                </figure>
+            <a class="games-list__item" href="#${game.competition.id}">
+            <p>${game.title}</p>
             </a>
         </li>
         `;
