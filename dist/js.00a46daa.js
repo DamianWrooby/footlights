@@ -2894,8 +2894,6 @@ var gameView = _interopRequireWildcard(require("./views/gameView"));
 
 var _base = require("./views/base");
 
-var _uniqid = _interopRequireDefault(require("uniqid"));
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; if (obj != null) { var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -2975,7 +2973,7 @@ var controlGame = function controlGame() {
 };
 
 window.addEventListener('hashchange', controlGame);
-},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../styles.scss":"styles.scss","./models/List":"js/models/List.js","./views/listView":"js/views/listView.js","./views/gameView":"js/views/gameView.js","./views/base":"js/views/base.js","uniqid":"../node_modules/uniqid/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../styles.scss":"styles.scss","./models/List":"js/models/List.js","./views/listView":"js/views/listView.js","./views/gameView":"js/views/gameView.js","./views/base":"js/views/base.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -3003,7 +3001,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49463" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55179" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
