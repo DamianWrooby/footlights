@@ -1,59 +1,72 @@
-$primary-color: #132753;
+$primary-color: #1a1f2b;
 $bg: black;
 $text-color: #fff;
+$main-font: 'Righteous', cursive;
+$secondary-font: 'Roboto', sans-serif;
 body {
-  color: $text-color;
-  background-color: $bg;
-  text-align: center;
+	color: $text-color;
+	background-color: $bg;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	max-width: inherit;
+	font-family: $secondary-font;
 }
 a {
-  &:link, &:hover, &:visited {
-    color: inherit;
-    text-decoration: none;
-  }
-  &:hover {
-    transform: translateX(2px);
-  }
-  &:focus {
-    outline: none;
-  }
+	&:link,
+	&:hover,
+	&:visited {
+		color: inherit;
+		text-decoration: none;
+	}
+	&:hover {
+		transform: translateX(2px);
+	}
+	&:focus {
+		outline: none;
+	}
 }
 ul {
-  list-style-type: none; 
+	list-style-type: none;
 }
 
 // Top Bar
 .topbar {
-  top: 0;
-  left: 0;
-  position: fixed;
-  width: 100%;
-  height: 50px;
-  background-color: $primary-color;
-  border-bottom: 2px solid rgb(185, 38, 38);
+	top: 0;
+	left: 0;
+	position: fixed;
+	width: 100%;
+	background-color: $primary-color;
+	border-bottom: 1px solid rgb(185, 38, 38);
+	display: inline-block;
+	&__logo a {
+		display: inline-block;
+		left: 0;
+	}
 }
-
+main {
+	margin-top: 50px;
+}
 .games-list {
-  padding: 2em;
+	padding: 2em;
 }
 .games-list__item {
-  display: inline-block;
+	display: inline-block;
+	padding: 1em;
 }
 .games-list__league {
-  font-size: 0.6em;
+	font-size: 0.6em;
 }
 .games-list__item--active {
-  background-color: grey;
+	background-color: grey;
 }
 
 .games-list__video {
-  text-align: center;
-  display: none;
+	text-align: center;
+	display: none;
 }
 .games-list__video--active {
-  list-style-type: none;
-  display: flex;
-  justify-content: center;
-  
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
 }
-

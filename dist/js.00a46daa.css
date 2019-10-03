@@ -2,6 +2,10 @@ body {
   color: #fff;
   background-color: black;
   text-align: center;
+  margin: 0;
+  padding: 0;
+  max-width: inherit;
+  font-family: "Roboto", sans-serif;
 }
 
 a:link, a:hover, a:visited {
@@ -24,9 +28,17 @@ ul {
   left: 0;
   position: fixed;
   width: 100%;
-  height: 50px;
-  background-color: #132753;
-  border-bottom: 2px solid #b92626;
+  background-color: #1a1f2b;
+  border-bottom: 1px solid #b92626;
+  display: inline-block;
+}
+.topbar__logo a {
+  display: inline-block;
+  left: 0;
+}
+
+main {
+  margin-top: 50px;
 }
 
 .games-list {
@@ -35,6 +47,7 @@ ul {
 
 .games-list__item {
   display: inline-block;
+  padding: 1em;
 }
 
 .games-list__league {
