@@ -2,8 +2,7 @@ import axios from 'axios';
 import { proxy } from '../config';
 
 export default class List {
-	constructor() {
-	}
+	constructor() {}
 	async getList() {
 		try {
 			const res = await axios(`https://www.scorebat.com/video-api/v1/`);

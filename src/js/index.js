@@ -8,7 +8,7 @@ import { elements } from './views/base';
 const state = {};
 
 /**
- * LIST CONTROLLER
+ * LIST CONTROLLER 
  */
 
 const controlList = async () => {
@@ -23,24 +23,18 @@ const controlList = async () => {
 };
 controlList();
 
-/**
- * GAME CONTROLLER
- */
-/* elements.gamesList.addEventListener('click', (e) => {
-	const item = e.target.closest('.games-list__item');
-	if (item) {
-		console.log('item was clicked');
-	}
-});
-*/
-
 const controlGame = () => {
 	const id = window.location.hash.replace('#', '');
 	if (id) {
-		// Highlight selected item
-		if (state.list) gameView.highlightSelected(id);
-		// Open game view
-		gameView.renderFullGame(id);
+		if (state.list) {
+			gameView.closeCurrTab();
+			// Highlight selected game
+			gameView.highlightSelected(id);
+			// Close current opened tab
+
+			// Open game view
+			gameView.renderFullGame(state.list.result, id);
+		}
 	}
 };
 window.addEventListener('hashchange', controlGame);
