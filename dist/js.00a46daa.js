@@ -2843,37 +2843,44 @@ exports.renderGamesList = renderGamesList;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.renderFullGame = exports.closeCurrTab = exports.highlightSelected = void 0;
-var resultsArr = Array.from(document.querySelectorAll('.games-list__item'));
+exports.renderFullGame = exports.checkHash = exports.closePrevTab = exports.highlightSelected = void 0;
 
+// Highlight selected game
 var highlightSelected = function highlightSelected(id) {
+  var resultsArr = Array.from(document.querySelectorAll('.games-list__item'));
   resultsArr.forEach(function (el) {
     el.classList.remove('games-list__item--active');
   });
   document.querySelector(".games-list__item[href*=\"".concat(id, "\"]")).classList.add('games-list__item--active');
-};
+}; // Close previous opened game tab
+
 
 exports.highlightSelected = highlightSelected;
 
-var findObjById = function findObjById(arr, id) {
-  return arr.find(function (el) {
-    return el.id === id;
-  });
-};
-
-var closeCurrTab = function closeCurrTab() {
-  //resultsArr.forEach((el) => {
-  //	el.removeChild.querySelector('.games-list__video');
-  //});
+var closePrevTab = function closePrevTab() {
   if (document.querySelector('.games-list__video')) {
     document.querySelector('.games-list__video').remove();
   }
+}; // Check hash
+
+
+exports.closePrevTab = closePrevTab;
+
+var checkHash = function checkHash(e) {
+  var targetHash = e.target.closest('.games-list__item').href.split('#', [2])[1];
+  console.log(targetHash);
+
+  if (targetHash === window.location.hash.replace('#', '')) {
+    closePrevTab();
+  }
 };
 
-exports.closeCurrTab = closeCurrTab;
+exports.checkHash = checkHash;
 
 var renderFullGame = function renderFullGame(res, id) {
-  var markup = "\n            <div class=\"games-list__video\">\n                ".concat(findObjById(res, id).embed, "\n            </div>\n\t\t\t");
+  var markup = "\n\t<div class=\"games-list__video\">\n\t\t".concat(res.find(function (el) {
+    return el.id === id;
+  }).embed, "\n\t</div>\n\t");
   document.querySelector(".games-list__item[href*=\"".concat(id, "\"]")).insertAdjacentHTML('beforeend', markup);
 };
 
@@ -2959,23 +2966,31 @@ function () {
 }();
 
 controlList();
+/**
+ * GAME VIEW CONTROLLER 
+ */
 
 var controlGame = function controlGame() {
   var id = window.location.hash.replace('#', '');
 
   if (id) {
     if (state.list) {
-      gameView.closeCurrTab(); // Highlight selected game
+      // Close current tab
+      gameView.closePrevTab(); // Highlight selected game
 
-      gameView.highlightSelected(id); // Close current opened tab
-      // Open game view
+      gameView.highlightSelected(id); // Open game view
 
       gameView.renderFullGame(state.list.result, id);
     }
   }
 };
+/**
+ * EVENT CONTROLLER 
+ */
+
 
 window.addEventListener('hashchange', controlGame);
+document.querySelector('.games-list').addEventListener('click', gameView.checkHash);
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../styles.scss":"styles.scss","./models/List":"js/models/List.js","./views/listView":"js/views/listView.js","./views/gameView":"js/views/gameView.js","./views/base":"js/views/base.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -3004,7 +3019,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49266" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49234" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

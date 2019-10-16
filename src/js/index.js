@@ -23,18 +23,25 @@ const controlList = async () => {
 };
 controlList();
 
+/**
+ * GAME VIEW CONTROLLER 
+ */
 const controlGame = () => {
 	const id = window.location.hash.replace('#', '');
 	if (id) {
 		if (state.list) {
-			gameView.closeCurrTab();
+			// Close current tab
+			gameView.closePrevTab();
 			// Highlight selected game
 			gameView.highlightSelected(id);
-			// Close current opened tab
-
 			// Open game view
 			gameView.renderFullGame(state.list.result, id);
 		}
 	}
 };
+
+/**
+ * EVENT CONTROLLER 
+ */
 window.addEventListener('hashchange', controlGame);
+document.querySelector('.games-list').addEventListener('click', gameView.checkHash);
