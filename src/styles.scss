@@ -40,12 +40,16 @@ $secondary-font: 'Roboto', sans-serif;
 body {
 	color: $text-color;
 	background-color: $bg;
+	background-image: url('./img/footlights-logo-bg2.png');
+	background-repeat: repeat;
+	//background-position: center;
 	text-align: center;
 	margin: 0;
 	padding: 0;
 	max-width: inherit;
 	font-family: $secondary-font;
 }
+
 a {
 	color: $text-color;
 	&:link,
