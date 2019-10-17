@@ -1,8 +1,42 @@
-$primary-color: #1a1f2b;
+$primary-color-dark: rgba(26, 31, 43, 1);
+$primary-color-light: rgba(29, 62, 96, 1);
 $bg: black;
-$text-color: #fff;
+$text-color: rgb(199, 199, 199);
+$subtext-color: rgb(173, 173, 173);
+$text-color-active: #fff;
 $main-font: 'Righteous', cursive;
 $secondary-font: 'Roboto', sans-serif;
+
+/*
+* {
+	background-color: rgba(255, 0, 0, .2);
+}
+* * {
+	background-color: rgba(0, 255, 0, .2);
+}
+* * * {
+	background-color: rgba(0, 0, 255, .2);
+}
+* * * * {
+	background-color: rgba(255, 0, 255, .2);
+}
+* * * * * {
+	background-color: rgba(0, 255, 255, .2);
+}
+* * * * * * {
+	background-color: rgba(255, 255, 0, .2);
+}
+* * * * * * * {
+	background-color: rgba(255, 0, 0, .2);
+}
+* * * * * * * * {
+	background-color: rgba(0, 255, 0, .2);
+}
+* * * * * * * * * {
+	background-color: rgba(0, 0, 255, .2);
+}
+*/
+
 body {
 	color: $text-color;
 	background-color: $bg;
@@ -13,14 +47,11 @@ body {
 	font-family: $secondary-font;
 }
 a {
+	color: $text-color;
 	&:link,
 	&:hover,
 	&:visited {
-		color: inherit;
 		text-decoration: none;
-	}
-	&:hover {
-		transform: translateX(2px);
 	}
 	&:focus {
 		outline: none;
@@ -37,7 +68,7 @@ ul {
 	position: fixed;
 	z-index: 100;
 	width: 100%;
-	background-color: $primary-color;
+	background: linear-gradient(90deg, $primary-color-light 0%, $primary-color-dark 50%, $primary-color-light 100%);
 	border-bottom: 1px solid rgb(185, 38, 38);
 	display: inline-block;
 	&__logo a {
@@ -53,13 +84,26 @@ main {
 }
 .games-list__item {
 	display: inline-block;
-	padding: 1em;
+	padding: 0.7em;
+	margin: 0.5em;
+	background-color: #1a1f2b;
+	border: 1px solid red;
+	border-radius: 5px;
+	min-width: 300px;
+	transition: all 0.1s ease-in-out;
+
+	&:hover {
+		color: $text-color-active;
+		background-color: $primary-color-light;
+	}
 }
 .games-list__league {
-	font-size: 0.6em;
+	color: $subtext-color;
+	font-size: 0.8em;
 }
 .games-list__item--active {
-	background-color: grey;
+	color: $text-color-active;
+	background-color: $primary-color-light;
 }
 
 .games-list__video {
@@ -67,6 +111,7 @@ main {
 	list-style-type: none;
 	display: flex;
 	justify-content: center;
+	margin: 0.5em;
 }
 .games-list__video--active {
 	list-style-type: none;
