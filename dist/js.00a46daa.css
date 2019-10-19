@@ -29,9 +29,10 @@
 */
 body {
   color: #c7c7c7;
-  background-color: black;
+  background-color: #0f0f18;
   background-image: url("/footlights-logo-bg2.9035e230.png");
   background-repeat: repeat;
+  background-position: center;
   text-align: center;
   margin: 0;
   padding: 0;

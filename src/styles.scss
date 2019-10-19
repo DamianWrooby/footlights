@@ -1,6 +1,6 @@
 $primary-color-dark: rgba(26, 31, 43, 1);
 $primary-color-light: rgba(29, 62, 96, 1);
-$bg: black;
+$bg: rgb(15, 15, 24);
 $text-color: rgb(199, 199, 199);
 $subtext-color: rgb(173, 173, 173);
 $text-color-active: #fff;
@@ -42,7 +42,7 @@ body {
 	background-color: $bg;
 	background-image: url('./img/footlights-logo-bg2.png');
 	background-repeat: repeat;
-	//background-position: center;
+	background-position: center;
 	text-align: center;
 	margin: 0;
 	padding: 0;
