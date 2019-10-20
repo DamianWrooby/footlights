@@ -6,7 +6,6 @@ $subtext-color: rgb(173, 173, 173);
 $text-color-active: #fff;
 $main-font: 'Righteous', cursive;
 $secondary-font: 'Roboto', sans-serif;
-
 /*
 * {
 	background-color: rgba(255, 0, 0, .2);
@@ -36,7 +35,6 @@ $secondary-font: 'Roboto', sans-serif;
 	background-color: rgba(0, 0, 255, .2);
 }
 */
-
 body {
 	color: $text-color;
 	background-color: $bg;
@@ -82,9 +80,11 @@ ul {
 }
 main {
 	margin-top: 50px;
+	width: 100%;
 }
 .games-list {
 	padding: 2em;
+	min-width: 300px;
 }
 .games-list__item {
 	display: inline-block;
@@ -116,9 +116,19 @@ main {
 	display: flex;
 	justify-content: center;
 	margin: 0.5em;
+	width: 100%;
 }
 .games-list__video--active {
 	list-style-type: none;
 	display: flex;
 	justify-content: center;
+}
+
+@media screen and (max-width: 568px) {
+	iframe {
+		width: 100%;
+	}
+	.games-list {
+		min-width: 200px;
+	}
 }
