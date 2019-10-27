@@ -109,7 +109,7 @@ main {
 	}
 }
 .games-list {
-	padding: 2em;
+	padding: 2em 2em 2em 0;
 	min-width: 300px;
 }
 .games-list__item {
@@ -121,7 +121,6 @@ main {
 	border-radius: 5px;
 	min-width: 300px;
 	transition: $transition;
-
 	&:hover {
 		color: $text-color-active;
 		background-color: $primary-color-light;
@@ -138,29 +137,29 @@ main {
 }
 
 .games-list__video {
-	min-width: 560px;
-	text-align: center;
-	list-style-type: none;
-	justify-content: center;
-	margin: 0.5em;
-	overflow: hidden;
-	// Calculated from the aspect ration of the content (in case of 16:9 it is 9/16= 0.5625)
-	padding-top: 56.25%;
-	padding-bottom: 50%;
-	position: relative;
-}
-
-.games-list__video iframe {
-	border: 0;
-	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
 	width: 100%;
+	padding: 30px 0 30px 0;
+	position: relative;
+	& iframe {
+		display: block;
+	}
 }
 
 .games-list__video--active {
 	list-style-type: none;
 	display: flex;
 	justify-content: center;
+}
+
+@media screen and (max-width: 480px) {
+	ul {
+		padding-inline-start: 0;
+	}
+	.games-list {
+		padding: 0;
+	}
+	.games-list__video iframe {
+		max-width: 300px;
+		max-height: 400px;
+	}
 }
