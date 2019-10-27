@@ -1,8 +1,10 @@
-# empty-project
+# Footlights
 
-Empty project.
+Footlights is a simple web app created in MVC design pattern with JavaScript ES6+, parcel as a bundler and axios to get data from api. Footlights uses scorebat API for display football highlights. 
+It's deployed at https://wrobelwrb.github.io/footlights/
 
-## Building and running on localhost
+## Setup
+### Building and running on localhost
 
 First install dependencies:
 
@@ -22,7 +24,7 @@ To create a production build:
 npm run build-prod
 ```
 
-## Running
+### Running
 
 ```sh
 node dist/bundle.js
