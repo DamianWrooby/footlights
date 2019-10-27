@@ -6,6 +6,7 @@ $subtext-color: rgb(173, 173, 173);
 $text-color-active: #fff;
 $main-font: 'Righteous', cursive;
 $secondary-font: 'Roboto', sans-serif;
+$transition: all 0.1s ease-in-out;
 /*
 * {
 	background-color: rgba(255, 0, 0, .2);
@@ -82,6 +83,32 @@ main {
 	margin-top: 50px;
 	width: 100%;
 }
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background: linear-gradient(90deg, $primary-color-light 0%, $primary-color-dark 50%, $primary-color-light 100%);
+	border-top: 1px solid rgb(185, 38, 38);
+	font-size: 0.8em;
+	&__link {
+		display: inline-block;
+		padding: 14px;
+	}
+	& a:hover {
+		transition: $transition;
+		color: #fff;
+	}
+	& p {
+		display: inline;
+	}
+	&__separator {
+		border-left: 1px solid #38546d;
+		border-right: 1px solid #16222c;
+		height: 20px;
+		display: inline;
+	}
+}
 .games-list {
 	padding: 2em;
 	min-width: 300px;
@@ -94,13 +121,14 @@ main {
 	border: 1px solid red;
 	border-radius: 5px;
 	min-width: 300px;
-	transition: all 0.1s ease-in-out;
+	transition: $transition;
 
 	&:hover {
 		color: $text-color-active;
 		background-color: $primary-color-light;
 	}
 }
+
 .games-list__league {
 	color: $subtext-color;
 	font-size: 0.8em;
@@ -111,24 +139,29 @@ main {
 }
 
 .games-list__video {
+	min-width: 560px;
 	text-align: center;
 	list-style-type: none;
-	display: flex;
 	justify-content: center;
 	margin: 0.5em;
+	overflow: hidden;
+	// Calculated from the aspect ration of the content (in case of 16:9 it is 9/16= 0.5625)
+	padding-top: 56.25%;
+	padding-bottom: 50%;
+	position: relative;
+}
+
+.games-list__video iframe {
+	border: 0;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
 	width: 100%;
 }
+
 .games-list__video--active {
 	list-style-type: none;
 	display: flex;
 	justify-content: center;
-}
-
-@media screen and (max-width: 568px) {
-	iframe {
-		width: 100%;
-	}
-	.games-list {
-		min-width: 200px;
-	}
 }

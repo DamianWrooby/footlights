@@ -17,7 +17,6 @@ export const closePrevTab = () => {
 // Check hash
 export const checkHash = (e) => {
 	const targetHash = e.target.closest('.games-list__item').href.split('#', [ 2 ])[1];
-	console.log(targetHash);
 	if (targetHash === window.location.hash.replace('#', '')) {
 		closePrevTab();
 	}
