@@ -97,7 +97,7 @@ main {
 .footer__separator {
   border-left: 1px solid #38546d;
   border-right: 1px solid #16222c;
-  display: inline;
+  height: 20px;
 }
 
 .games-list {
