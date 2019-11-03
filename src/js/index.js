@@ -12,6 +12,7 @@ const state = {};
 
 const controlList = async (competitionID) => {
 	state.list = new List();
+	listView.clearList();
 	try {
 		await state.list.getList();
 		if (competitionID) {
@@ -20,14 +21,8 @@ const controlList = async (competitionID) => {
 					return el.competition.id === competitionID;
 				})
 			);
-			console.log(
-				state.list.result.filter(function(el) {
-					return el.competition.id === competitionID;
-				})
-			);
 		} else {
 			listView.renderGamesList(state.list.result);
-			console.log(state.list.result);
 		}
 	} catch (err) {
 		console.log('Something went wrong.');
@@ -57,3 +52,21 @@ const controlGame = () => {
  */
 window.addEventListener('hashchange', controlGame);
 elements.gamesList.addEventListener('click', gameView.checkHash);
+elements.allButton.addEventListener('click', function() {
+	controlList();
+});
+elements.premierButton.addEventListener('click', function() {
+	controlList(15);
+});
+elements.laligaButton.addEventListener('click', function() {
+	controlList(14);
+});
+elements.serieaButton.addEventListener('click', function() {
+	controlList(13);
+});
+elements.bundesButton.addEventListener('click', function() {
+	controlList(11);
+});
+elements.l1Button.addEventListener('click', function() {
+	controlList(10);
+});

@@ -1,4 +1,5 @@
 import uniqid from 'uniqid';
+import { elements } from './base';
 
 const convertDate = (date) => {
 	const year = date.split('').slice(0, 4).join('');
@@ -7,6 +8,10 @@ const convertDate = (date) => {
 	const time = date.split('').slice(11, 16).join('');
 	const fullDate = `${day}-${month}-${year} ${time}`;
 	return fullDate;
+};
+
+export const clearList = () => {
+	elements.gamesList.innerHTML = '';
 };
 const renderGame = (game) => {
 	convertDate(game.date);

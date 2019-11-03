@@ -58,7 +58,7 @@ ul {
   top: 0;
   left: 0;
   position: fixed;
-  z-index: 100;
+  z-index: 101;
   width: 100%;
   background: linear-gradient(90deg, #1d3e60 0%, #1a1f2b 50%, #1d3e60 100%);
   border-bottom: 1px solid #b92626;
@@ -73,13 +73,16 @@ ul {
 .topbar__competition--list {
   top: 44px;
   width: 100%;
+  z-index: 100;
   position: fixed;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   background: #1d3e60;
   margin: 0;
   padding: 10px;
   border-bottom: 1px solid #b92626;
+  box-shadow: 0px 1px 5px black;
 }
 .topbar__competition--item {
   padding: 0px 3px 0px 3px;
@@ -129,8 +132,9 @@ main {
 }
 
 .games-list {
-  padding: 2em 2em 2em 0;
+  padding: 3em 2em 2em 0;
   min-width: 300px;
+  min-height: 500px;
 }
 
 .games-list__item {

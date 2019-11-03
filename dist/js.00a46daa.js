@@ -2812,15 +2812,34 @@ function now(){
     return now.last = time > last ? time : last + 1;
 }
 
-},{"os":"../node_modules/os-browserify/browser.js","process":"../node_modules/process/browser.js"}],"js/views/listView.js":[function(require,module,exports) {
+},{"os":"../node_modules/os-browserify/browser.js","process":"../node_modules/process/browser.js"}],"js/views/base.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.renderGamesList = void 0;
+exports.elements = void 0;
+var elements = {
+  gamesList: document.querySelector('.games-list'),
+  allButton: document.querySelector('.btn-all'),
+  premierButton: document.querySelector('.btn-premier'),
+  laligaButton: document.querySelector('.btn-laliga'),
+  serieaButton: document.querySelector('.btn-seriea'),
+  bundesButton: document.querySelector('.btn-bundes'),
+  l1Button: document.querySelector('.btn-l1')
+};
+exports.elements = elements;
+},{}],"js/views/listView.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.renderGamesList = exports.clearList = void 0;
 
 var _uniqid = _interopRequireDefault(require("uniqid"));
+
+var _base = require("./base");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2832,6 +2851,12 @@ var convertDate = function convertDate(date) {
   var fullDate = "".concat(day, "-").concat(month, "-").concat(year, " ").concat(time);
   return fullDate;
 };
+
+var clearList = function clearList() {
+  _base.elements.gamesList.innerHTML = '';
+};
+
+exports.clearList = clearList;
 
 var renderGame = function renderGame(game) {
   convertDate(game.date);
@@ -2847,7 +2872,7 @@ var renderGamesList = function renderGamesList(games) {
 };
 
 exports.renderGamesList = renderGamesList;
-},{"uniqid":"../node_modules/uniqid/index.js"}],"js/views/gameView.js":[function(require,module,exports) {
+},{"uniqid":"../node_modules/uniqid/index.js","./base":"js/views/base.js"}],"js/views/gameView.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2894,17 +2919,6 @@ var renderFullGame = function renderFullGame(res, id) {
 };
 
 exports.renderFullGame = renderFullGame;
-},{}],"js/views/base.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.elements = void 0;
-var elements = {
-  gamesList: document.querySelector('.games-list')
-};
-exports.elements = elements;
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -2946,37 +2960,34 @@ function () {
         switch (_context.prev = _context.next) {
           case 0:
             state.list = new _List.default();
-            _context.prev = 1;
-            _context.next = 4;
+            listView.clearList();
+            _context.prev = 2;
+            _context.next = 5;
             return state.list.getList();
 
-          case 4:
+          case 5:
             if (competitionID) {
               listView.renderGamesList(state.list.result.filter(function (el) {
                 return el.competition.id === competitionID;
               }));
-              console.log(state.list.result.filter(function (el) {
-                return el.competition.id === competitionID;
-              }));
             } else {
               listView.renderGamesList(state.list.result);
-              console.log(state.list.result);
             }
 
-            _context.next = 10;
+            _context.next = 11;
             break;
 
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](1);
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](2);
             console.log('Something went wrong.');
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 7]]);
+    }, _callee, null, [[2, 8]]);
   }));
 
   return function controlList(_x) {
@@ -3011,6 +3022,30 @@ var controlGame = function controlGame() {
 window.addEventListener('hashchange', controlGame);
 
 _base.elements.gamesList.addEventListener('click', gameView.checkHash);
+
+_base.elements.allButton.addEventListener('click', function () {
+  controlList();
+});
+
+_base.elements.premierButton.addEventListener('click', function () {
+  controlList(15);
+});
+
+_base.elements.laligaButton.addEventListener('click', function () {
+  controlList(14);
+});
+
+_base.elements.serieaButton.addEventListener('click', function () {
+  controlList(13);
+});
+
+_base.elements.bundesButton.addEventListener('click', function () {
+  controlList(11);
+});
+
+_base.elements.l1Button.addEventListener('click', function () {
+  controlList(10);
+});
 },{"regenerator-runtime/runtime":"../node_modules/regenerator-runtime/runtime.js","../styles.scss":"styles.scss","./models/List":"js/models/List.js","./views/listView":"js/views/listView.js","./views/gameView":"js/views/gameView.js","./views/base":"js/views/base.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -3039,7 +3074,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49251" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57749" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
