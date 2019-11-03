@@ -6,16 +6,29 @@ import * as gameView from './views/gameView';
 import { elements } from './views/base';
 
 const state = {};
-
 /**
  * LIST CONTROLLER 
  */
 
-const controlList = async () => {
+const controlList = async (competitionID) => {
 	state.list = new List();
 	try {
 		await state.list.getList();
-		listView.renderGamesList(state.list.result);
+		if (competitionID) {
+			listView.renderGamesList(
+				state.list.result.filter(function(el) {
+					return el.competition.id === competitionID;
+				})
+			);
+			console.log(
+				state.list.result.filter(function(el) {
+					return el.competition.id === competitionID;
+				})
+			);
+		} else {
+			listView.renderGamesList(state.list.result);
+			console.log(state.list.result);
+		}
 	} catch (err) {
 		console.log('Something went wrong.');
 	}
@@ -43,4 +56,4 @@ const controlGame = () => {
  * EVENT CONTROLLER 
  */
 window.addEventListener('hashchange', controlGame);
-document.querySelector('.games-list').addEventListener('click', gameView.checkHash);
+elements.gamesList.addEventListener('click', gameView.checkHash);

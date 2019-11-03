@@ -1,5 +1,7 @@
 $primary-color-dark: rgba(26, 31, 43, 1);
 $primary-color-light: rgba(29, 62, 96, 1);
+$button-color: rgba(26, 31, 43, 1);
+$button-color-active: rgba(31, 36, 50, 1);
 $bg: rgb(15, 15, 24);
 $text-color: rgb(199, 199, 199);
 $subtext-color: rgb(173, 173, 173);
@@ -74,11 +76,41 @@ ul {
 	background: linear-gradient(90deg, $primary-color-light 0%, $primary-color-dark 50%, $primary-color-light 100%);
 	border-bottom: 1px solid rgb(185, 38, 38);
 	display: inline-block;
+	box-shadow: 0px 1px 5px black;
 	&__logo a {
 		display: inline-block;
 		left: 0;
 	}
 }
+.topbar__competition {
+	&--list {
+		top: 44px;
+		width: 100%;
+		position: fixed;
+		display: flex;
+		flex-direction: row;
+		background: $primary-color-light;
+		margin: 0;
+		padding: 10px;
+		border-bottom: 1px solid rgb(185, 38, 38);
+	}
+	&--item {
+		padding: 0px 3px 0px 3px;
+	}
+	&--button {
+		color: white;
+		background-color: $button-color;
+		cursor: pointer;
+		border: none;
+		border-radius: 5px;
+		padding: 5px;
+	}
+	&--button:hover {
+		background-color: $button-color-active;
+		transform: scale(1.05);
+	}
+}
+
 main {
 	margin-top: 50px;
 	width: 100%;
@@ -124,10 +156,12 @@ main {
 	&:hover {
 		color: $text-color-active;
 		background-color: $primary-color-light;
+		transform: scale(1.05);
 	}
 }
 
-.games-list__league {
+.games-list__league,
+.games-list__date {
 	color: $subtext-color;
 	font-size: 0.8em;
 }
