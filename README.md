@@ -1,7 +1,7 @@
 # Footlights
 
 Footlights is a simple web app created in MVC design pattern with JavaScript ES6+, parcel as a bundler and axios to get data from api. Footlights uses scorebat API for display football highlights. 
-It's deployed at https://wrobelwrb.github.io/footlights/
+It's deployed at https://damianwrooby.github.io/footlights/
 
 ## Setup
 ### Building and running on localhost
